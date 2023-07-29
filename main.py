@@ -1,5 +1,6 @@
 from victory import victory_start_game as victory
 from wallet import start_program as wallet
+import filemanager
 
 
 while True:
@@ -14,32 +15,32 @@ while True:
     print('9. играть в викторину')
     print('10. мой банковский счет')
     print('11. смена рабочей директории (*необязательный пункт)')
-    print('12. выход (или любая другая клавиша')
+    print('12. выход (или любая другая клавиша)')
 
     choice = input('Выберите пункт меню: ')
 
     if choice == '1':
-        pass
+        filemanager.create_folder()
     elif choice == '2':
-        pass
+        filemanager.delete_folder_files()
     elif choice == '3':
-        pass
+        filemanager.copy_items()
     elif choice == '4':
-        pass
+        filemanager.show_dir()
     elif choice == '5':
-        pass
+        filemanager.show_items()
     elif choice == '6':
-        pass
+        filemanager.show_items(dir=False)
     elif choice == '7':
-        pass
+        filemanager.show_info()
     elif choice == '8':
-        pass
+        filemanager.show_user_info()
     elif choice == '9':
         victory()
     elif choice == '10':
         wallet()
     elif choice == '11':
-        pass
+        filemanager.change_dir()
     else:
         print('Выход..')
         break
