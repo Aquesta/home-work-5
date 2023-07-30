@@ -23,10 +23,10 @@ def delete_folder_files():
         input('Что бы продолжить нажмите любую клавишу...')
     elif os.path.isfile(full_path):
         os.remove(full_path)
-        print(f'Фаил {name} удален.')
+        print(f'Файл {name} удален.')
         input('Что бы продолжить нажмите любую клавишу...')
     else:
-        print('Такого файла/папки не сушествует')
+        print('Такого файла/папки не существует')
         input('Что бы продолжить нажмите любую клавишу...')
 
 
@@ -49,16 +49,29 @@ def copy_items():
         copy(old_name, dst_name)
 
 
-def show_items(dir=True):
+def show_items(look_dir=True) -> list:
     path = os.getcwd()
     items = os.listdir(path)
+    dirs = []
+    files = []
     for n in items:
-        if dir:
+        if look_dir:
             if os.path.isdir(n):
                 print(n)
+                dirs.append(n)
         else:
             if os.path.isfile(n):
                 print(n)
+                files.append(n)
+    return dirs if look_dir else files
+
+
+def save_items_to_file():
+    with open('listdir.txt', 'w') as f:
+        dir_for_save = show_items()
+        files_for_save = show_items(look_dir=False)
+        f.write(f'dir: {", ".join(dir_for_save)} \n')
+        f.write(f'files: {", ".join(files_for_save)}')
 
 
 def show_info():
@@ -77,7 +90,7 @@ def show_user_info():
 def change_dir():
     path = os.getcwd()
     print('Текущая дериктория: ', path)
-    new_dir = input('Введите путь к новой дериктории: ')
+    new_dir = input('Введите путь к новой директории: ')
     os.chdir(new_dir)
     print('Текущая дериктория: ', os.getcwd())
     input('Что бы продолжить нажмите любую клавишу...')
