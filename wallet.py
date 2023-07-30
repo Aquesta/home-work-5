@@ -1,7 +1,24 @@
-# программа личный счет
+import json
 
-balance = 100
+balance = 0
 history = {}
+
+
+def save_state(current_balance: int, current_history: dict):
+    current_state = {}
+    current_state.update({'balance': current_balance, 'history': current_history})
+
+    with open('balance.json', 'w') as f:
+        json.dump(current_state, f)
+
+
+def load_state():
+    global balance
+    global history
+    with open('balance.json', 'r') as f:
+        saved_state = json.load(f)
+        balance = saved_state['balance']
+        history = saved_state['history']
 
 
 def input_amount(choice):
@@ -57,6 +74,7 @@ def check_history():
 
 def start_program():
     global balance
+    load_state()
     while True:
         print('1. пополнение счета')
         print('2. покупка')
@@ -73,6 +91,7 @@ def start_program():
         elif choice == '3':
             check_history()
         elif choice == '4':
+            save_state(balance, history)
             break
         else:
             print('Неверный пункт меню')
