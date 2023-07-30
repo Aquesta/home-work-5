@@ -1,0 +1,2 @@
+dir: .pytest_cache, __pycache__, .git, .idea 
+files: .DS_Store, todo.txt, balance.json, test_python.py, requiments.txt, test_filemanager.py, victory.py, main.py, filemanager.py, listdir.txt, wallet.py

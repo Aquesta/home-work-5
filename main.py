@@ -15,7 +15,8 @@ while True:
     print('9. играть в викторину')
     print('10. мой банковский счет')
     print('11. смена рабочей директории (*необязательный пункт)')
-    print('12. выход (или любая другая клавиша)')
+    print('12. сохранить содержимое директории в файл')
+    print('13. выход (или любая другая клавиша)')
 
     choice = input('Выберите пункт меню: ')
 
@@ -28,9 +29,9 @@ while True:
     elif choice == '4':
         filemanager.show_dir()
     elif choice == '5':
-        filemanager.show_items()
+        filemanager.show_items(look_dir=True)
     elif choice == '6':
-        filemanager.show_items(dir=False)
+        filemanager.show_items(look_dir=False)
     elif choice == '7':
         filemanager.show_info()
     elif choice == '8':
@@ -41,7 +42,8 @@ while True:
         wallet()
     elif choice == '11':
         filemanager.change_dir()
+    elif choice == '12':
+        filemanager.save_items_to_file()
     else:
         print('Выход..')
         break
-
