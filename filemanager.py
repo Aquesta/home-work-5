@@ -43,10 +43,7 @@ def copy_items():
     show_dir(False)
     old_name = input('Введите имя файла/папки для копирования: ')
     dst_name = input('Введите имя нового файла/папки: ')
-    if os.path.isdir(old_name):
-        copytree(old_name, dst_name)
-    else:
-        copy(old_name, dst_name)
+    copytree(old_name, dst_name) if os.path.isdir(old_name) else copy(old_name, dst_name)
 
 
 def show_items(look_dir=True) -> list:

@@ -3,7 +3,7 @@ import random
 peoples = {'Пушкин': ['06.06.1799', 'шестое июня 1799'],
            'Ленин': ['22.04.1870', 'двадцать второе апреля 1870'],
            'Сталин': ['18.12.1878', 'восемьнадцатое декабря 1878'],
-           'Ельцин': ['01.02.1931', 'первое фераля 1931'],
+           'Ельцин': ['01.02.1931', 'первое февраля 1931'],
            'Путин': ['07.10.1952', 'седьмое октября 1952']}
 
 
@@ -44,8 +44,7 @@ def game(dictionary):
     names = get_names(dictionary_random)
     while count_try != 0:
         answer = input(f'Введите дату рождения в формате "dd.mm.yyyy" {names[count_try-1]}: ')
-        if check_answer(dictionary_random, answer, names[count_try-1]):
-            count_correct += 1
+        count_correct += 1 if check_answer(dictionary_random, answer, names[count_try-1]) else 0
         count_try -= 1
     print_result(count_correct, len(dictionary_random))
 
