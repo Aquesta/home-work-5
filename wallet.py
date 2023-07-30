@@ -4,12 +4,14 @@ balance = 100
 history = {}
 
 
-def input_amount(re_fill=True):
+def input_amount(choice):
     # TODO: после урока по try/catch отловить что вводят не цифры
-    if re_fill:
+    if choice == '1':
         return int(input("Введите сумму для пополнения баланса: "))
-    else:
+    elif choice == '2':
         return int(input("Введите сумму покупки: "))
+    elif choice == '3':
+        return input('Введите название покупки: ')
 
 
 def refill(summ, current_balance):
@@ -27,18 +29,21 @@ def check_balance(summ, current_balance):
 
 def purchase(summ, current_balance):
     if check_balance(summ, current_balance):
-        product = input('Введите название покупки: ')
         new_balance = current_balance - summ
-        write_history(product, summ)
         return new_balance
     else:
         print(print('Недостаточно средств. Возврат в меню.'))
         return current_balance
 
 
-def write_history(product_name, amount):
+def write_history(product_name, amount, dictionary):
+    """
+    :param product_name: str
+    :param amount: int
+    :type dictionary: dict
+    """
     print('Покупка совершена, возврат в меню.')
-    history[product_name] = amount
+    dictionary.update({product_name: amount})
 
 
 def check_history():
@@ -60,12 +65,18 @@ def start_program():
 
         choice = input('Выберите пункт меню: ')
         if choice == '1':
-            balance = refill(input_amount(), balance)
+            balance = refill(input_amount('1'), balance)
         elif choice == '2':
-            balance = purchase(input_amount(re_fill=False), balance)
+            summ = input_amount('2')
+            balance = purchase(summ, balance)
+            write_history(input_amount('3'), summ, history)
         elif choice == '3':
             check_history()
         elif choice == '4':
             break
         else:
             print('Неверный пункт меню')
+
+
+if __name__ == '__main__':
+    start_program()
